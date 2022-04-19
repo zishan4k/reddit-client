@@ -110,9 +110,11 @@ export const fetchComments = (index, permalink) => async (dispatch) => {
 //Selector Functions
 const selectPosts = (state) => state.redditPosts.posts;
 const selectSearchTerm = (state) => state.redditPosts.searchTerm;
+
 export const selectSelectedSubreddit = (state) =>
   state.redditPosts.selectedSubreddit;
-export const selectFilterdPosts = createSelector(
+
+export const selectFilteredPosts = createSelector(
   [selectPosts, selectSearchTerm],
   (posts, searchTerm) => {
     if (searchTerm !== "") {
