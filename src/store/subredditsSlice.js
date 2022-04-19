@@ -41,3 +41,5 @@ export const fetchSubreddits = () => async (dispatch) => {
     dispatch(getSubredditsFailed());
   }
 };
+
+export const selectSubreddits = (state) => state.subreddits.subreddits;
