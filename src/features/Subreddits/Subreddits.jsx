@@ -6,7 +6,7 @@ import { fetchSubreddits, selectSubreddits } from "../../store/subredditsSlice";
 import {
   setSelectedSubreddit,
   selectSelectedSubreddit,
-} from "../../store/redditPostsSlice";
+} from "../../store/redditSlice";
 
 const Subreddits = () => {
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getSubredditPosts, getPostComments } from "../api/redditAPI";
+import { getSubredditPosts, getPostComments } from "../api/reddit";
 
 const initialState = {
   posts: [],
   error: false,
   isLoading: false,
   searchTerm: "",
-  selectedSubreddit: "/r/minecraft/",
+  selectedSubreddit: "/r/pics/",
 };
 
 const redditPostsSlice = createSlice({
@@ -108,11 +108,11 @@ export const fetchComments = (index, permalink) => async (dispatch) => {
 };
 
 //Selector Functions
-const selectPosts = (state) => state.redditPosts.posts;
-const selectSearchTerm = (state) => state.redditPosts.searchTerm;
+const selectPosts = (state) => state.reddit.posts;
+const selectSearchTerm = (state) => state.reddit.searchTerm;
 
 export const selectSelectedSubreddit = (state) =>
-  state.redditPosts.selectedSubreddit;
+  state.reddit.selectedSubreddit;
 
 export const selectFilteredPosts = createSelector(
   [selectPosts, selectSearchTerm],

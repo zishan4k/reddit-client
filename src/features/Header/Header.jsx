@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./Header.css";
 import { FaReddit } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { setSearchTerm } from "../../store/redditPostsSlice";
+import { setSearchTerm } from "../../store/redditSlice";
 
 const Header = () => {
   const [searchTermPost, setSearchTermPost] = useState("");
-  const searchTerm = useSelector((state) => state.redditPosts.searchTerm);
+  const searchTerm = useSelector((state) => state.reddit.searchTerm);
   const dispatch = useDispatch();
 
   const handleSearchTermChange = (e) => {
@@ -29,15 +30,15 @@ const Header = () => {
         <p>
           Reddit<span>Client</span>
         </p>
-        <form className="search" onSubmit={handleSearchTermSubmit}>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchTermPost}
-            onChange={handleSearchTermChange}
-            aria-label="Search posts"
-          />
-        </form>
+      </div>
+      <form className="search" onSubmit={handleSearchTermSubmit}>
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchTermPost}
+          onChange={handleSearchTermChange}
+          aria-label="Search posts"
+        />
         <button
           type="submit"
           onClick={handleSearchTermSubmit}
@@ -45,7 +46,7 @@ const Header = () => {
         >
           <FaSearch />
         </button>
-      </div>
+      </form>
     </header>
   );
 };

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSubreddits } from "../api/redditAPI";
+import { getSubreddits } from "../api/reddit";
 
 const initialState = {
   subreddits: [],
@@ -7,36 +7,36 @@ const initialState = {
   isLoading: false,
 };
 
-const subredditsSlice = createSlice({
+const subRedditSlice = createSlice({
   name: "subreddits",
   initialState,
   reducers: {
-    startGetSubreddits: (state) => {
+    startGetSubreddits(state) {
       state.isLoading = true;
       state.error = false;
     },
-    getSubredditSuccess: (state, action) => {
+    getSubredditsSuccess(state, action) {
       state.isLoading = false;
       state.subreddits = action.payload;
     },
-    getSubredditsFailed: (state) => {
+    getSubredditsFailed(state) {
       state.isLoading = false;
       state.error = true;
     },
   },
 });
 
-export const { startGetSubreddits, getSubredditSuccess, getSubredditsFailed } =
-  subredditsSlice.actions;
+export const { getSubredditsFailed, getSubredditsSuccess, startGetSubreddits } =
+  subRedditSlice.actions;
 
-export default subredditsSlice.reducer;
+export default subRedditSlice.reducer;
 
-// Redux Thunk to get list of subreddits
+// This is a Redux Thunk that gets subreddits.
 export const fetchSubreddits = () => async (dispatch) => {
   try {
     dispatch(startGetSubreddits());
     const subreddits = await getSubreddits();
-    dispatch(getSubredditSuccess(subreddits));
+    dispatch(getSubredditsSuccess(subreddits));
   } catch (error) {
     dispatch(getSubredditsFailed());
   }
